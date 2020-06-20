@@ -25,6 +25,19 @@ class postController extends Controller
         $post = new post ;
         $post->title = $req->title;
         $post->body = $req->body;
-        $post->save();
+        $new = $post->save();
+        return response()->json([
+            'status'=>'success',
+            'new'=> $post
+        ]);
+    }
+
+    public function index()
+    {
+        $all = post::all();
+        return response()->json([
+            'status'=>'success',
+            'posts'=>$all
+            ]);
     }
 }
